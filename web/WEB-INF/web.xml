@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>InicioSesion</servlet-name>
+        <servlet-class>Controller.InicioSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarUsuario</servlet-name>
+        <servlet-class>Controller.UsuarioDao.RegistrarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarDocumento</servlet-name>
+        <servlet-class>Controller.DocumentoDao.ActualizarDocumento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarDocumento</servlet-name>
+        <servlet-class>Controller.DocumentoDao.EliminarDocumento</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InicioSesion</servlet-name>
+        <url-pattern>/Iniciar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarUsuario</servlet-name>
+        <url-pattern>/usuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarDocumento</servlet-name>
+        <url-pattern>/ActualizarDocumento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarDocumento</servlet-name>
+        <url-pattern>/EliminarDocumento</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

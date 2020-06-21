@@ -1,0 +1,19 @@
+SMAP
+consultarRol_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarRol.jsp
+consultarRol.jsp
+*L
+5,32:48
+36,10:80
+45,2:90
+47:92,3
+48:95
+49,2:96,3
+51,2:102
+53:104,3
+54,28:107
+81:135
+*E

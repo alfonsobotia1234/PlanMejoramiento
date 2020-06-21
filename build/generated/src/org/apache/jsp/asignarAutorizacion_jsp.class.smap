@@ -1,0 +1,16 @@
+SMAP
+asignarAutorizacion_jsp.java
+JSP
+*S JSP
+*F
++ 0 asignarAutorizacion.jsp
+asignarAutorizacion.jsp
+*L
+5,30:48
+34,14:78
+47,2:92
+49:94,3
+50,3:97
+52,21:100
+72,14:121
+*E
