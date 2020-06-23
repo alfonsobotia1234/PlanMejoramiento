@@ -78,15 +78,18 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      //  processRequest(request, response);
+       
         String accion = request.getParameter("accion");
         switch (accion) {
             case "Guardar":
+                
+                
                //Datos que se resiven del formulario
                 String nom = request.getParameter("nomProducto");
                 int pre = Integer.parseInt(request.getParameter("precio"));
                 Part part = request.getPart("imagProducto");
-              
+                System.out.println("p generado ");
                 InputStream inputStream = part.getInputStream();
                 
                 //envia los datos a PersonaDao
@@ -94,13 +97,13 @@ public class Controlador extends HttpServlet {
                 p.setPrecio(pre);
                 p.setImagProducto(inputStream);
                 
-                
-                con.agregar(p);
+               
+                dao.agregar(p);
                 request.getRequestDispatcher("menuUsuario.jsp");
                 break;
 
         }
-
+        request.getRequestDispatcher("menuUsuario.jsp").forward(request, response);
     }
 
     @Override

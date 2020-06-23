@@ -20,8 +20,7 @@ public class ControladorImagen extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id=Integer.parseInt(request.getParameter("id_producto"));
-        dao.listarImagen(id, response);
+       
         
         
     }
@@ -38,7 +37,13 @@ public class ControladorImagen extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      //  processRequest(request, response);
+      
+      String temp = request.getParameter("id_producto");
+        System.out.println("Print request.getParameter(\"id_producto" + temp);
+        
+       int id=Integer.parseInt(temp);
+        dao.listarImagen(id, response);
     }
 
     /**

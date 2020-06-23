@@ -4,13 +4,18 @@ import Model.Conexion;
 import Model.Producto;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -28,7 +33,7 @@ public class ProductoDao {
         String sql="select * from producto where id_producto="+id;
         Producto p= new Producto();
         try {
-           con=cn.getConnection();
+           con=cn.getConexion();
            ps=con.prepareStatement(sql);
            rs=ps.executeQuery();
            while(rs.next()){
@@ -47,7 +52,7 @@ public class ProductoDao {
         List<Producto> productos = new ArrayList();
         String sql = "select * from producto";
         try {
-            con = cn.getConnection();
+            con = cn.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -66,46 +71,75 @@ public class ProductoDao {
     }
 
     public void listarImagen(int id, HttpServletResponse reponse) {
-        String sql = "select * from producto where id_Producto=" + id;
+        String sql = "select * from producto where id_Producto=?";
         InputStream inputStream = null;
         OutputStream outputStream = null;
         BufferedInputStream bufferedInputStream = null;
         BufferedOutputStream bufferedOutputStream = null;
         try {
             outputStream = reponse.getOutputStream();
-            con = cn.getConnection();
+            con = cn.getConexion();
             ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
+            
             if (rs.next());
             {
                 inputStream = rs.getBinaryStream("imagProducto");
-
+                System.out.println("Encuentra un inaaresultado adicional ");
             }
+            
             bufferedInputStream = new BufferedInputStream(inputStream);
             bufferedOutputStream = new BufferedOutputStream(outputStream);
+           
             int i = 0;
 
             while ((i = bufferedInputStream.read()) != -1) {
                 bufferedOutputStream.write(i);
 
             }
-        } catch (Exception e) {
+            
+            System.out.println("Me debe estar manaddo ");
+        } catch (SQLException e ) {
+            System.err.println("Producto "+ e.getMessage());
 
+        } catch (IOException ex) {
+            System.out.println("error arhcio IO " + ex.getMessage());
+            Logger.getLogger(ProductoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-  /* public void agregar(Producto p){
-        String sql="insert into producto (id_producto, imagen_producto, nombre_producto, precio) values(NULL,?,?,?)";
-        try{
-            con=cn.getConnection();
+  public void agregar(Producto p){
+      
+        System.out.println("Nombre "+ p.getNomProducto());
+        System.out.println("precio"+ p.getPrecio());
+        System.out.println("imagen"+ p.getImagProducto());
+        
+        String sql="insert into producto ( nombre_producto, imagen_producto, precio) values(?,?,?)";
+                   
+                    
+                    
+        try {
+             con=cn.getConexion();
             ps=con.prepareStatement(sql);
-            ps.setBlob(1, p.getImagProducto());
-            ps.setString(2, p.getNomProducto());
+            
+            ps.setString(1, p.getNomProducto());
+            ps.setBlob(2, p.getImagProducto());
             ps.setInt(3, p.getPrecio());
+            
             ps.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDao.class.getName()).log(Level.SEVERE, null, e);
             
-        }catch (Exception e){
             
+            System.out.println("Error agrgar )"+e.getMessage());
+             System.out.println("Error agrgar )"+e.getLocalizedMessage());
+             System.out.println("Descripcion )"+e.getStackTrace());
+            
+       
         }
-    }*/
+           
+            
+        
+    }
 }

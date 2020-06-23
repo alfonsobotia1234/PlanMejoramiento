@@ -296,35 +296,6 @@ public class Consultas extends Conexion  {
 
         return false;
     }
-    //metodo para agregar producto
-    public boolean agregar(Producto p){
-        String sql="insert into producto (imagen_producto, nombre_producto, precio) values(?,?,?)";
-        try{
-            con=cn.getConnection();
-            pst=con.prepareStatement(sql);
-            pst.setBlob(1, p.getImagProducto());
-            pst.setString(2, p.getNomProducto());
-            pst.setInt(3, p.getPrecio());
-            pst.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println("Error" + e);
-        } finally {
-            try {
-                if (getConexion() != null) {
-                    getConexion().close();
-                }
-                if (pst != null) {
-                    pst.close();
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error" + e);
-            }
-        }
-
-        return false;
-    }
 }
 
     
