@@ -1,4 +1,4 @@
-package Controller;
+package Controller.IniciarSesion;
 
 import Model.Consultas;
 import java.io.IOException;

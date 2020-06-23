@@ -22,7 +22,7 @@
                         <form class="form"  >
                             <div class="form__group">
 
-                                <input name="inicial" type="text" class="form__input" id="codigo"  placeholder="Digite inicial del Documento" required>
+                                <input name="codigo" type="text" class="form__input" id="codigo"  placeholder="Digite inicial del Documento" required>
                             </div>
                         </form>
                     </div>

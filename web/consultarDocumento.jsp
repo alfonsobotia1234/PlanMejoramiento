@@ -29,9 +29,9 @@
                 <table  class="table table-sm table-bordered table-hover ">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="text-center">Sigla</th>
+                            <th class="text-center">Inicial</th>
                             <th class="text-center">Nombre</th>
-                            <th class="text-center">Estado</th>
+                            <th class="text-center">EstadoDocumento</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                         <%                Conexion con = new Conexion();

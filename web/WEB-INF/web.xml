@@ -2,7 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>InicioSesion</servlet-name>
-        <servlet-class>Controller.InicioSesion</servlet-class>
+        <servlet-class>Controller.IniciarSesion.InicioSesion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegistrarUsuario</servlet-name>
@@ -15,6 +15,18 @@
     <servlet>
         <servlet-name>EliminarDocumento</servlet-name>
         <servlet-class>Controller.DocumentoDao.EliminarDocumento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Controlador</servlet-name>
+        <servlet-class>Controller.Controlador.Controlador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorImagen</servlet-name>
+        <servlet-class>Controller.Controlador.ControladorImagen</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>Controller.productoDao.NewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>EliminarDocumento</servlet-name>
         <url-pattern>/EliminarDocumento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controlador</servlet-name>
+        <url-pattern>/Controlador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorImagen</servlet-name>
+        <url-pattern>/ControladorImagen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
