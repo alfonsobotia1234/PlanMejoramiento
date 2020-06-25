@@ -3,6 +3,7 @@
     Created on : 19/06/2020, 09:42:28 PM
     Author     : User
 --%>
+<%@include file="seguridad.jsp" %>
 <%@page import="java.lang.String"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%HttpSession ob = request.getSession();%>
@@ -63,6 +64,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="consultarUsuario.jsp">Usuario</a>
                             <a class="dropdown-item" href="consultarDocumento.jsp">Tipo de documento</a>
+                            <a class="dropdown-item" href="consultarProducto.jsp">Producto</a>
                            
                         </div>
                     </li>

@@ -296,6 +296,122 @@ public class Consultas extends Conexion  {
 
         return false;
     }
+    //metodo para eliminar producto
+    public boolean eliminarProducto(String NombreProducto) {
+
+        PreparedStatement pst = null;
+
+        try {
+
+            String consulta = "delete from producto where nombre_producto= ?;";
+            pst = getConexion().prepareStatement(consulta);
+            pst.setString(1, NombreProducto);
+
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error" + e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error" + e);
+            }
+        }
+
+        return false;
+    }
+    /*public static void main(String[] args) {
+        Consultas con=new Consultas();
+        con.eliminarProducto("no se");
+        
+    }*/
+    
+    //mertodo para actualizar prodcuto
+    
+    public boolean actualizarProducto(String nombreProducto, int Precio,int idProducto) {
+
+        PreparedStatement pst = null;
+        String sql = "update producto set nombre_producto= ? ,precio=? where id_producto =?;";
+        try {
+            pst = getConexion().prepareStatement(sql);
+            pst.setString(1, nombreProducto);
+            pst.setInt(2, Precio);
+            pst.setInt(3, idProducto);
+            
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error" + e);
+            }
+        }
+
+        return false;
+    }
+   /* public static void main(String[] args) {
+        Consultas con=new Consultas();
+        con.actualizarProducto("Maquinaria 3", 5000000, 18);
+    }**/
+    public boolean recuperarContraseña(String contrasenia, int id) {
+
+        PreparedStatement pst = null;
+        try {
+
+            String sql = "UPDATE Caterpillar.usuario SET contrasenia = ?  WHERE id_usuario = ?";
+            pst = getConexion().prepareStatement(sql);
+            pst.setString(1, contrasenia);
+            pst.setInt(2, id);
+            
+
+            if (pst.executeUpdate() == 1) {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error" + e);
+            }
+        }
+
+        return false;
+    }
+    /*public static void main(String[] args) {
+        Consultas con=new Consultas();
+            con.recuperarContraseña("123456", 1);
+    }*/
+    
 }
 
     

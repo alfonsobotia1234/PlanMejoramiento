@@ -45,7 +45,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1" ><i class="icon-user-1"></i></span>
                         </div>
-                        <input name="numeroDoc" type="text" value="<%=rs.getString(2)%>" placeholder="Número de Documento" class="form-control" />
+                        <input name="numeroDoc" readonly type="text" value="<%=rs.getString(2)%>" placeholder="Número de Documento" class="form-control" />
                     </div>
 
                     <div class="input-group mb-3">

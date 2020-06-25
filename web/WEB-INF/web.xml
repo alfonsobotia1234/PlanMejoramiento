@@ -28,6 +28,22 @@
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>Controller.productoDao.NewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActualizarProducto</servlet-name>
+        <servlet-class>Controller.EliminarProducto.ActualizarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarAdministrador</servlet-name>
+        <servlet-class>Controller.AdministradorDao.RegistrarAdministrador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IniciarSesionAdministrador</servlet-name>
+        <servlet-class>Controller.IniciarSesionAdministradorDao.IniciarSesionAdministrador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>recuperarContraseña</servlet-name>
+        <servlet-class>Controller.IniciarSesion.recuperarContraseña</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
         <url-pattern>/Iniciar</url-pattern>
@@ -55,6 +71,22 @@
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarProducto</servlet-name>
+        <url-pattern>/ActualizarProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarAdministrador</servlet-name>
+        <url-pattern>/RegistrarAdministrador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciarSesionAdministrador</servlet-name>
+        <url-pattern>/IniciarSesionAdministrador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>recuperarContraseña</servlet-name>
+        <url-pattern>/recuperarContrase_a</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

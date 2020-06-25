@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.lang.String"%>
+<%@include file="seguridad.jsp" %>
 <%HttpSession ob = request.getSession();%>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,7 @@
                             <a class="nav-link" href="#"><i class="fas fa-cart-plus">(<label style="color: ">${contador}</label>)</i> Carrito de compras</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="menuAdministrador.jsp">menu administrador</a>
+                            <a class="nav-link" href="consultarUsuario.jsp">Actualizar Datos personales</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="Salir.jsp">Cerrar Sesión</a>
@@ -86,13 +87,29 @@
                 <div class="row">
                     <div class="col-lg-4">
                         
-                        <img src="ControladorImagen?id_producto=?"><!--<img src="imagenes/HOMBRE-ZAPATOS-10081812-MIEL_2.jpg" alt="">-->
-                       
                         
+                        
+                        <img src="<%=rs.getBinaryStream("imagen_producto")%>" alt="<%=rs.getBinaryStream("imagen_producto")%>"><!--<img src="imagenes/HOMBRE-ZAPATOS-10081812-MIEL_2.jpg" alt="">-->
+                        
+                       <% String urlImage = "ControladorImagen?id_producto=" + rs.getString("id_producto");%>
+                       
+                       
+                      
+                        ControladorImagen
                         <h2><%=rs.getString("nombre_producto")%></h2>
                         <p><%=rs.getString("precio")%></p>
-                        <p><a class="btn btn-warning" href="#" role="button">Comprar</a></p>
+                        
+                        
+                        <div>
+
                         <p><a class="btn btn-warning" href="Controlador?accion=AgregarCarrito=${p.getId()}" role="button">Agregar al Carrito</a></p>
+                        <p><a class="btn btn-warning" href="" role="button">Alquilar</a></p>
+                        
+                        
+                        </div>
+ 
+
+                        
                     </div><!-- /.col-lg-4 -->
 
                 </div>

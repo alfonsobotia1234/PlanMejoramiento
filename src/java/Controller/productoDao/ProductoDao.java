@@ -107,7 +107,7 @@ public class ProductoDao {
             System.out.println("error arhcio IO " + ex.getMessage());
             Logger.getLogger(ProductoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+System.out.print("Ya tiene la imahen en memori a ");
     }
   public void agregar(Producto p){
       

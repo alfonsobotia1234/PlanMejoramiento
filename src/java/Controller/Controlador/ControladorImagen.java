@@ -33,6 +33,10 @@ public class ControladorImagen extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * 
+     * 
+     * 
+     * https://stackoverflow.com/questions/5243726/how-to-display-an-image-in-jsp
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,10 +44,14 @@ public class ControladorImagen extends HttpServlet {
       //  processRequest(request, response);
       
       String temp = request.getParameter("id_producto");
-        System.out.println("Print request.getParameter(\"id_producto" + temp);
-        
-       int id=Integer.parseInt(temp);
+        System.out.println("Print request.getParameter(\"id_producto: " + temp);
+          response.setContentType("image/jpg");
+       int id =Integer.parseInt(temp);
         dao.listarImagen(id, response);
+        
+        
+      
+       // TODO: RETORNAEL LA IMAGEN  
     }
 
     /**

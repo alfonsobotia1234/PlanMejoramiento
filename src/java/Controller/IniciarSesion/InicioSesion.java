@@ -18,6 +18,8 @@ public class InicioSesion extends HttpServlet {
 
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("contrasenia");
+        String administrador = request.getParameter("administrador");
+        String pass = request.getParameter("contrasenia");
         HttpSession objsesion = request.getSession(true);
         Consultas co = new Consultas();
         

@@ -3,7 +3,7 @@
     Created on : 20/06/2020, 01:08:25 PM
     Author     : User
 --%>
-
+<%@include file="seguridad.jsp" %>
 <%@page import="Controller.UsuarioDao.EliminarUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
