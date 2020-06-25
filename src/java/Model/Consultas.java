@@ -412,6 +412,51 @@ public class Consultas extends Conexion  {
             con.recuperarContraseña("123456", 1);
     }*/
     
+   /* public String autenticacionRol(String usuario, String password) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select * from usuario where numero_Documento = ? and Contrasenia = ?";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, usuario);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+
+            String rol = "";
+
+            if (rs.absolute(1)) {
+
+                rol = "" + rs.getString(3) + " " + rs.getString(4);
+                System.out.println(rol);
+                return rol;
+
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return "";
+    }*/
+    
 }
 
     

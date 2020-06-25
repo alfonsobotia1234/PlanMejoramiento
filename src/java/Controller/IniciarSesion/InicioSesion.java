@@ -18,8 +18,7 @@ public class InicioSesion extends HttpServlet {
 
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("contrasenia");
-        String administrador = request.getParameter("administrador");
-        String pass = request.getParameter("contrasenia");
+        String rol= request.getParameter("rol");
         HttpSession objsesion = request.getSession(true);
         Consultas co = new Consultas();
         
@@ -38,7 +37,11 @@ public class InicioSesion extends HttpServlet {
            objsesion.setAttribute("documento", "");
             response.sendRedirect("mensaje.jsp");
         }
-
+        if (rol=="Administrador") {
+            objsesion.setAttribute("rol", rol);
+            response.sendRedirect("menuAdministrador.jsp");
+        } 
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

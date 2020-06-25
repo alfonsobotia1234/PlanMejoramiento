@@ -44,6 +44,10 @@
         <servlet-name>recuperarContraseña</servlet-name>
         <servlet-class>Controller.IniciarSesion.recuperarContraseña</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>literal</servlet-name>
+        <servlet-class>Controller.Controlador.literal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
         <url-pattern>/Iniciar</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>recuperarContraseña</servlet-name>
         <url-pattern>/recuperarContrase_a</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>literal</servlet-name>
+        <url-pattern>/literal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -25,7 +25,7 @@ import javax.servlet.http.Part;
 public class Controlador extends HttpServlet {
 
     Producto p = new Producto();
-    Consultas con=new Consultas();
+    Consultas co=new Consultas();
     ProductoDao dao=new ProductoDao();
     List<Producto> productos = new ArrayList<>();
 
@@ -104,8 +104,19 @@ public class Controlador extends HttpServlet {
 
         }
         request.getRequestDispatcher("menuUsuario.jsp").forward(request, response);
+   
+    
+        switch (accion){
+                case"productos":
+                    List<Producto>productos=dao.listar();
+                    request.getAttribute("productos"); 
+                    request.getRequestDispatcher("menuUsuario.jsp").forward(request, response);
+                    
+                    break;
+              default:
+                  request.getRequestDispatcher("Controlador?accion=listar").forward(request, response);
+ }
     }
-
     @Override
     public String getServletInfo() {
         return "Short description";
