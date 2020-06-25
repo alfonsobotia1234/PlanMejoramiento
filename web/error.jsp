@@ -3,7 +3,7 @@
     Created on : 20/06/2020, 01:40:57 PM
     Author     : User
 --%>
-
+<%@include file="seguridad.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page isErrorPage="true"%>
 <!DOCTYPE html>

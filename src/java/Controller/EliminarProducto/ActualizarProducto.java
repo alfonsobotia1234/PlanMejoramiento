@@ -1,4 +1,9 @@
-package Controller.DocumentoDao;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controller.EliminarProducto;
 
 import Model.Consultas;
 import java.io.IOException;
@@ -10,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "ActualizarDocumento", urlPatterns = {"/ActualizarDocumento"})
-public class ActualizarDocumento extends HttpServlet {
+@WebServlet(name = "ActualizarProducto", urlPatterns = {"/ActualizarProducto"})
+public class ActualizarProducto extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -20,15 +25,14 @@ public class ActualizarDocumento extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
         
             Consultas con = new Consultas();
-            String inicial = request.getParameter("inicial");
-            String nombreDoc = request.getParameter("nombreDocumento");
-            String estadoTipoDoc = request.getParameter("estadoTipoDocumento");
-            int idTipoDocumento = Integer.parseInt( request.getParameter("id"));
+            String nombreProducto = request.getParameter("nombreProducto");
+            int precio = Integer.parseInt (request.getParameter("precio")); 
+            int idProducto = Integer.parseInt( request.getParameter("idProducto"));
             
-            if(con.actualizarDocumento(inicial, nombreDoc, estadoTipoDoc,idTipoDocumento)){
+            if(con.actualizarProducto(nombreProducto, precio, idProducto)){
                 response.sendRedirect("menuAdministrador.jsp");
             } else{
-                response.sendRedirect("actualizarDocumento.jsp");
+                response.sendRedirect("actualizarProducto.jsp");
         }
                 
         }

@@ -1,4 +1,4 @@
-package Controller.DocumentoDao;
+package Controller.EliminarProducto;
 
 import Model.Consultas;
 import java.io.IOException;
@@ -9,29 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author User
+ */
+@WebServlet(name = "EliminarProducto", urlPatterns = {"/EliminarProducto"})
+public class EliminarProducto extends HttpServlet {
 
-@WebServlet(name = "ActualizarDocumento", urlPatterns = {"/ActualizarDocumento"})
-public class ActualizarDocumento extends HttpServlet {
-
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-        
+     try (PrintWriter out = response.getWriter()) {
+      
             Consultas con = new Consultas();
-            String inicial = request.getParameter("inicial");
-            String nombreDoc = request.getParameter("nombreDocumento");
-            String estadoTipoDoc = request.getParameter("estadoTipoDocumento");
-            int idTipoDocumento = Integer.parseInt( request.getParameter("id"));
-            
-            if(con.actualizarDocumento(inicial, nombreDoc, estadoTipoDoc,idTipoDocumento)){
+            String NombreProducto = request.getParameter("NombreProducto");
+               
+            if(con.eliminarProducto(NombreProducto)){
                 response.sendRedirect("menuAdministrador.jsp");
             } else{
-                response.sendRedirect("actualizarDocumento.jsp");
+                response.sendRedirect("eliminarProducto.jsp");
+            }
+            
         }
-                
-        }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,6 +1,7 @@
 package Model;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Consultas extends Conexion  {
+    
+    Connection con;
+    Conexion cn = new Conexion();
+    PreparedStatement pst;
+    ResultSet rs;   
+
 
     //Metodo para iniciar sesion
     public String autenticacion(String usuario, String password) {
@@ -134,19 +141,19 @@ public class Consultas extends Conexion  {
             con.eliminarUsuario("1001823866");}*/
 
     //Metodo para actualizar usuario
-    public boolean actualizarUsuario(String numeroDoc, String nombres, String apellidos, String correo,  String tipoDocumentoId, String numerodoc1 ) {
+    public boolean actualizarUsuario(String numeroDoc, String nombres, String apellidos, String correo, String contraseña,  int tipoDocumentoId, int id) {
 
         PreparedStatement pst = null;
         try {
 
-            String sql = "UPDATE usuario SET numero_documento= ?, nombres= ?, apellidos= ?, correo= ?, tipo_Documento_id= ? WHERE numero_documento= ?;";
+            String sql = "UPDATE Caterpillar.usuario SET numero_documento= ?, nombres = ?, apellidos= ?, correo = ?, tipo_documento_id = ?  WHERE id_usuario = ?";
             pst = getConexion().prepareStatement(sql);
             pst.setString(1, numeroDoc);
             pst.setString(2, nombres);
             pst.setString(3, apellidos);
             pst.setString(4, correo);
-            pst.setString(5, tipoDocumentoId);
-            pst.setString(6, numeroDoc);
+            pst.setInt(5, tipoDocumentoId);
+            pst.setInt(6, id);
             
 
             if (pst.executeUpdate() == 1) {
@@ -172,12 +179,12 @@ public class Consultas extends Conexion  {
 
         return false;
     }
-    
-       public static void main (String[] args) {
-           Consultas con= new Consultas();
-           con.actualizarUsuario("1001823866", "Alfonso", "botia Alviz", "alfonso@mimail.com","3","1001823866");
-        }
 
+  /*public static void main (String[] args) {
+           Consultas con= new Consultas();
+           con.actualizarUsuario("1001823866", "Alfonso Rafael", "Botia Alviz", "alfonsobotia8@gmail.com","12345",3,42);
+        }
+*/
        
 
     //Metodo para registrar tipo de documento
@@ -217,15 +224,17 @@ public class Consultas extends Conexion  {
        
 
     //Metodo para actualizar documento
-    public boolean actualizarDocumento(String inicial, String nombreDocumento, String estadoTipoDoc) {
+    public boolean actualizarDocumento(String inicial, String nombreDocumento, String estadoTipoDoc,int idTipoDocumento) {
 
         PreparedStatement pst = null;
-        String sql = "update inicial set inicial= ?, nombre_documento= ? where estado_tipo_documento= ?;";
+        String sql = "update tipo_documento set inicial= ?, nombre_documento= ? ,estado_tipo_documento= ? where id_tipo_documento = ?;";
         try {
             pst = getConexion().prepareStatement(sql);
             pst.setString(1, inicial);
             pst.setString(2, nombreDocumento);
             pst.setString(3, estadoTipoDoc);
+            pst.setInt(4, idTipoDocumento);
+            
             if (pst.executeUpdate() == 1) {
                 return true;
             }
@@ -248,17 +257,22 @@ public class Consultas extends Conexion  {
 
         return false;
     }
+   /* public static void main (String[] args) {
+        
+            Consultas con= new Consultas();
+            
+            con.actualizarDocumento("TI","Tarjeta de identidad","Activo",16 );}*/
 
     //Metodo para eliminar documento
-    public boolean eliminarDocumento(String sigla) {
+    public boolean eliminarDocumento(String inicial) {
 
         PreparedStatement pst = null;
 
         try {
 
-            String consulta = "delete from tipo_documento where sigla= ?;";
+            String consulta = "delete from tipo_documento where inicial= ?;";
             pst = getConexion().prepareStatement(consulta);
-            pst.setString(1, sigla);
+            pst.setString(1, inicial);
 
             if (pst.executeUpdate() == 1) {
                 return true;
@@ -282,7 +296,122 @@ public class Consultas extends Conexion  {
 
         return false;
     }
+    //metodo para eliminar producto
+    public boolean eliminarProducto(String NombreProducto) {
 
+        PreparedStatement pst = null;
+
+        try {
+
+            String consulta = "delete from producto where nombre_producto= ?;";
+            pst = getConexion().prepareStatement(consulta);
+            pst.setString(1, NombreProducto);
+
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error" + e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error" + e);
+            }
+        }
+
+        return false;
+    }
+    /*public static void main(String[] args) {
+        Consultas con=new Consultas();
+        con.eliminarProducto("no se");
+        
+    }*/
+    
+    //mertodo para actualizar prodcuto
+    
+    public boolean actualizarProducto(String nombreProducto, int Precio,int idProducto) {
+
+        PreparedStatement pst = null;
+        String sql = "update producto set nombre_producto= ? ,precio=? where id_producto =?;";
+        try {
+            pst = getConexion().prepareStatement(sql);
+            pst.setString(1, nombreProducto);
+            pst.setInt(2, Precio);
+            pst.setInt(3, idProducto);
+            
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error" + e);
+            }
+        }
+
+        return false;
+    }
+   /* public static void main(String[] args) {
+        Consultas con=new Consultas();
+        con.actualizarProducto("Maquinaria 3", 5000000, 18);
+    }**/
+    public boolean recuperarContraseña(String contrasenia, int id) {
+
+        PreparedStatement pst = null;
+        try {
+
+            String sql = "UPDATE Caterpillar.usuario SET contrasenia = ?  WHERE id_usuario = ?";
+            pst = getConexion().prepareStatement(sql);
+            pst.setString(1, contrasenia);
+            pst.setInt(2, id);
+            
+
+            if (pst.executeUpdate() == 1) {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error" + e);
+            }
+        }
+
+        return false;
+    }
+    /*public static void main(String[] args) {
+        Consultas con=new Consultas();
+            con.recuperarContraseña("123456", 1);
+    }*/
+    
 }
 
     

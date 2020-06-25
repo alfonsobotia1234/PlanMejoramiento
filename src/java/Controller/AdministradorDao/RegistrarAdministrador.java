@@ -1,37 +1,42 @@
-package Controller.DocumentoDao;
+
+package Controller.AdministradorDao;
 
 import Model.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author User
+ */
+public class RegistrarAdministrador extends HttpServlet {
 
-@WebServlet(name = "ActualizarDocumento", urlPatterns = {"/ActualizarDocumento"})
-public class ActualizarDocumento extends HttpServlet {
-
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
         
-            Consultas con = new Consultas();
-            String inicial = request.getParameter("inicial");
-            String nombreDoc = request.getParameter("nombreDocumento");
-            String estadoTipoDoc = request.getParameter("estadoTipoDocumento");
-            int idTipoDocumento = Integer.parseInt( request.getParameter("id"));
-            
-            if(con.actualizarDocumento(inicial, nombreDoc, estadoTipoDoc,idTipoDocumento)){
-                response.sendRedirect("menuAdministrador.jsp");
-            } else{
-                response.sendRedirect("actualizarDocumento.jsp");
+        String numdoc = request.getParameter("documento");
+        String nombres = request.getParameter("nombres");
+        String apelldios = request.getParameter("apellidos");
+        String correo = request.getParameter("correo");
+        String contra = request.getParameter("contrasenia");
+        String estado = request.getParameter("estado");
+        String tipoDocumentoId = request.getParameter("tipodoc");
+
+
+        Consultas co = new Consultas();
+        if (co.registrarUsuario(numdoc, nombres, apelldios, correo, contra, estado,tipoDocumentoId)) {
+           response.sendRedirect("index.jsp");
+
+        } else {
+            response.sendRedirect("registrarUsuario.jsp");
         }
-                
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

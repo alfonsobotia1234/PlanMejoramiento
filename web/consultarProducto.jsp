@@ -1,6 +1,6 @@
 <%-- 
-    Document   : consultarDocumento
-    Created on : 20/06/2020, 09:59:12 PM
+    Document   : Consultar producto
+    Created on : 23/06/2020, 08:23:54 PM
     Author     : User
 --%>
 <%@include file="seguridad.jsp" %>
@@ -22,34 +22,33 @@
         <nav>
             <div class="container">
                 <br>
-                <h1>Tipos de Documento</h1>
+                <h1>Productos</h1>
                 <a href="menuAdministrador.jsp" style="color: white" class="btn btn-success">Volver</a>
                 <br>
                 <br>
                 <table  class="table table-sm table-bordered table-hover ">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="text-center">Inicial</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">EstadoDocumento</th>
+                            <th class="text-center">Nombre Producto</th>
+                            <th class="text-center">Precio Prducto</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                         <%                Conexion con = new Conexion();
                             PreparedStatement pst = null;
                             ResultSet rs = null;
                             try {
-                                String consulta = "SELECT * FROM tipo_documento;";
+                                String consulta = "SELECT * FROM producto;";
                                 pst = con.getConexion().prepareStatement(consulta);
                                 rs = pst.executeQuery();
 
                                 while (rs.next()) {
                         %>
                         <tr>
-                            <td class="text-center"><%=rs.getString(1)%></td>
-                            <td class="text-center"><%=rs.getString(2)%></td>
+                          
                             <td class="text-center"><%=rs.getString(3)%></td>
-                            <td class="text-center"><a class="btn btn-info" href="actualizarDocumento.jsp?codigo=<%=rs.getString(1)%>">Actualizar</a>
-                                <a style="color: white" class="btn btn-danger" href="eliminarDocumento.jsp?codigo=<%=rs.getString(1)%>">Eliminar</a>
+                            <td class="text-center"><%=rs.getString(4)%></td>
+                            <td class="text-center"><a class="btn btn-info" href="actualizarProducto.jsp?nomProd=<%=rs.getString(1)%>">Actualizar</a>
+                                <a style="color: white" class="btn btn-danger" href="eliminarProducto.jsp?nomProd=<%=rs.getString(1)%>">Eliminar</a>
                             </td>
                         </tr>
                         <%}%>

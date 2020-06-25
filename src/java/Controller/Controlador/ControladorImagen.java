@@ -1,37 +1,28 @@
-package Controller.DocumentoDao;
+package Controller.Controlador;
 
-import Model.Consultas;
+import Controller.productoDao.ProductoDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author User
+ */
+public class ControladorImagen extends HttpServlet {
 
-@WebServlet(name = "ActualizarDocumento", urlPatterns = {"/ActualizarDocumento"})
-public class ActualizarDocumento extends HttpServlet {
-
+    ProductoDao dao= new  ProductoDao();
+    
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+       
         
-            Consultas con = new Consultas();
-            String inicial = request.getParameter("inicial");
-            String nombreDoc = request.getParameter("nombreDocumento");
-            String estadoTipoDoc = request.getParameter("estadoTipoDocumento");
-            int idTipoDocumento = Integer.parseInt( request.getParameter("id"));
-            
-            if(con.actualizarDocumento(inicial, nombreDoc, estadoTipoDoc,idTipoDocumento)){
-                response.sendRedirect("menuAdministrador.jsp");
-            } else{
-                response.sendRedirect("actualizarDocumento.jsp");
-        }
-                
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -42,11 +33,25 @@ public class ActualizarDocumento extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * 
+     * 
+     * 
+     * https://stackoverflow.com/questions/5243726/how-to-display-an-image-in-jsp
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      //  processRequest(request, response);
+      
+      String temp = request.getParameter("id_producto");
+        System.out.println("Print request.getParameter(\"id_producto: " + temp);
+          response.setContentType("image/jpg");
+       int id =Integer.parseInt(temp);
+        dao.listarImagen(id, response);
+        
+        
+      
+       // TODO: RETORNAEL LA IMAGEN  
     }
 
     /**

@@ -17,12 +17,12 @@ public class EliminarUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            String numeroDoc = request.getParameter("cod");
+            String numeroDoc = request.getParameter("numeroDoc");
 
             Consultas ob = new Consultas();
 
             if (ob.eliminarUsuario(numeroDoc)) {
-                response.sendRedirect("menuAdministrador.jsp");
+                response.sendRedirect("index.jsp");
             } else {
                 response.sendRedirect("consultarUsuario.jsp");
             }

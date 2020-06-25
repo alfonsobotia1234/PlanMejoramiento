@@ -3,12 +3,13 @@
     Created on : 20/06/2020, 10:39:07 PM
     Author     : User
 --%>
+<%@include file="seguridad.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Dependencia</title>
+        <title>Documento</title>
     </head>
     <body>
         <link href="css/Styleconsultas.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +23,7 @@
                         <form class="form"  >
                             <div class="form__group">
 
-                                <input name="inicial" type="text" class="form__input" id="codigo"  placeholder="Digite inicial del Documento" required>
+                                <input name="codigo" type="text" class="form__input" id="codigo"  placeholder="Digite inicial del Documento" required>
                             </div>
                         </form>
                     </div>
