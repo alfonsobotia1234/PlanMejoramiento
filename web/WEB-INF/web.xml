@@ -52,6 +52,10 @@
         <servlet-name>RecuperarContrasenia</servlet-name>
         <servlet-class>Controller.RecuperarContraseñaDao.RecuperarContrasenia</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendMail</servlet-name>
+        <servlet-class>Controller.SendMailDao.SendMail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
         <url-pattern>/Iniciar</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarContrasenia</servlet-name>
         <url-pattern>/RecuperarContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendMail</servlet-name>
+        <url-pattern>/SendMail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

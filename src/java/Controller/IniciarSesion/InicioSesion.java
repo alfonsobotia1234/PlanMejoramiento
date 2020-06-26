@@ -1,5 +1,6 @@
 package Controller.IniciarSesion;
 
+import Controller.SendMailDao.SendEmailSMTP;
 import Model.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +30,9 @@ public class InicioSesion extends HttpServlet {
             objsesion.setAttribute("nombre", nombre);
             objsesion.setAttribute("documento", usuario);
             
+            
+            SendEmailSMTP s = new SendEmailSMTP(); 
+            s.enviarConGMail("usercall.hm@gmail.com", "Prueba ", usuario + nombre + rol );
             
             if (rol.equals("Administrador")) {
                 objsesion.setAttribute("rol", rol);
