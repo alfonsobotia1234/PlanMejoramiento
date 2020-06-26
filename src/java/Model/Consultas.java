@@ -7,16 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Consultas extends Conexion  {
-    
+public class Consultas extends Conexion {
+
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement pst;
-    ResultSet rs;   
-
+    ResultSet rs;
 
     //Metodo para iniciar sesion
     public String autenticacion(String usuario, String password) {
@@ -63,9 +63,9 @@ public class Consultas extends Conexion  {
 
         return "";
     }
-    
+
     //Metodo para registrar usuario
-    public boolean registrarUsuario(String numeroDocumento, String nombres, String apellidos, String correo, String contrasenia, String estado,String tipoDocumentoId ) {
+    public boolean registrarUsuario(String numeroDocumento, String nombres, String apellidos, String correo, String contrasenia, String estado, String tipoDocumentoId) {
 
         PreparedStatement pst = null;
         try {
@@ -85,7 +85,7 @@ public class Consultas extends Conexion  {
 
         } catch (SQLException ex) {
             System.err.println("Error" + ex);
-        }finally {
+        } finally {
             try {
                 if (getConexion() != null) {
                     getConexion().close();
@@ -99,10 +99,7 @@ public class Consultas extends Conexion  {
             }
         }
         return false;
-         }
-       
-        
-   
+    }
 
     //Metodo para eliminar usuarios
     public boolean eliminarUsuario(String numeroDoc) {
@@ -134,6 +131,7 @@ public class Consultas extends Conexion  {
         }
         return false;
     }
+
     /*public static void main (String[] args) {
         
             Consultas con= new Consultas();
@@ -141,7 +139,7 @@ public class Consultas extends Conexion  {
             con.eliminarUsuario("1001823866");}*/
 
     //Metodo para actualizar usuario
-    public boolean actualizarUsuario(String numeroDoc, String nombres, String apellidos, String correo, String contraseña,  int tipoDocumentoId, int id) {
+    public boolean actualizarUsuario(String numeroDoc, String nombres, String apellidos, String correo, String contraseña, int tipoDocumentoId, int id) {
 
         PreparedStatement pst = null;
         try {
@@ -154,7 +152,6 @@ public class Consultas extends Conexion  {
             pst.setString(4, correo);
             pst.setInt(5, tipoDocumentoId);
             pst.setInt(6, id);
-            
 
             if (pst.executeUpdate() == 1) {
                 return true;
@@ -180,13 +177,11 @@ public class Consultas extends Conexion  {
         return false;
     }
 
-  /*public static void main (String[] args) {
+    /*public static void main (String[] args) {
            Consultas con= new Consultas();
            con.actualizarUsuario("1001823866", "Alfonso Rafael", "Botia Alviz", "alfonsobotia8@gmail.com","12345",3,42);
         }
-*/
-       
-
+     */
     //Metodo para registrar tipo de documento
     public boolean registrarDocumento(String inicial, String nombreDocumento, String estadoTipoDoc) {
 
@@ -221,10 +216,9 @@ public class Consultas extends Conexion  {
 
         return false;
     }
-       
 
     //Metodo para actualizar documento
-    public boolean actualizarDocumento(String inicial, String nombreDocumento, String estadoTipoDoc,int idTipoDocumento) {
+    public boolean actualizarDocumento(String inicial, String nombreDocumento, String estadoTipoDoc, int idTipoDocumento) {
 
         PreparedStatement pst = null;
         String sql = "update tipo_documento set inicial= ?, nombre_documento= ? ,estado_tipo_documento= ? where id_tipo_documento = ?;";
@@ -234,7 +228,7 @@ public class Consultas extends Conexion  {
             pst.setString(2, nombreDocumento);
             pst.setString(3, estadoTipoDoc);
             pst.setInt(4, idTipoDocumento);
-            
+
             if (pst.executeUpdate() == 1) {
                 return true;
             }
@@ -257,7 +251,8 @@ public class Consultas extends Conexion  {
 
         return false;
     }
-   /* public static void main (String[] args) {
+
+    /* public static void main (String[] args) {
         
             Consultas con= new Consultas();
             
@@ -296,6 +291,7 @@ public class Consultas extends Conexion  {
 
         return false;
     }
+
     //metodo para eliminar producto
     public boolean eliminarProducto(String NombreProducto) {
 
@@ -329,15 +325,15 @@ public class Consultas extends Conexion  {
 
         return false;
     }
+
     /*public static void main(String[] args) {
         Consultas con=new Consultas();
         con.eliminarProducto("no se");
         
     }*/
-    
+
     //mertodo para actualizar prodcuto
-    
-    public boolean actualizarProducto(String nombreProducto, int Precio,int idProducto) {
+    public boolean actualizarProducto(String nombreProducto, int Precio, int idProducto) {
 
         PreparedStatement pst = null;
         String sql = "update producto set nombre_producto= ? ,precio=? where id_producto =?;";
@@ -346,7 +342,7 @@ public class Consultas extends Conexion  {
             pst.setString(1, nombreProducto);
             pst.setInt(2, Precio);
             pst.setInt(3, idProducto);
-            
+
             if (pst.executeUpdate() == 1) {
                 return true;
             }
@@ -369,7 +365,8 @@ public class Consultas extends Conexion  {
 
         return false;
     }
-   /* public static void main(String[] args) {
+
+    /* public static void main(String[] args) {
         Consultas con=new Consultas();
         con.actualizarProducto("Maquinaria 3", 5000000, 18);
     }**/
@@ -382,7 +379,6 @@ public class Consultas extends Conexion  {
             pst = getConexion().prepareStatement(sql);
             pst.setString(1, contrasenia);
             pst.setInt(2, id);
-            
 
             if (pst.executeUpdate() == 1) {
                 return true;
@@ -407,17 +403,18 @@ public class Consultas extends Conexion  {
 
         return false;
     }
+
     /*public static void main(String[] args) {
         Consultas con=new Consultas();
             con.recuperarContraseña("123456", 1);
     }*/
-    
-   /* public String autenticacionRol(String usuario, String password) {
+
+ public String autenticacionRol(String usuario, String password) {
         PreparedStatement pst = null;
         ResultSet rs = null;
 
         try {
-            String consulta = "select * from usuario where numero_Documento = ? and Contrasenia = ?";
+            String consulta = "select rol from usuario where numero_Documento = ? and Contrasenia = ?";
             pst = getConexion().prepareStatement(consulta);
             //preparar las variables
             pst.setString(1, usuario);
@@ -428,13 +425,13 @@ public class Consultas extends Conexion  {
 
             if (rs.absolute(1)) {
 
-                rol = "" + rs.getString(3) + " " + rs.getString(4);
-                System.out.println(rol);
+                rol = rs.getString("rol");
+                System.out.println("se esta solictado " +  rol);
                 return rol;
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("Error" + e);
 
         } finally {
@@ -455,13 +452,24 @@ public class Consultas extends Conexion  {
         }
 
         return "";
-    }*/
+    }
     
+    //metodo enviar correo
+    public boolean enviarCorreo(String de, String clave) {
+        boolean enviado = false;
+        try {
+            String host = "smtp.gmail.com";
+            
+            Properties prop= System.getProperties();
+            
+            prop.put("mail.smtp.starttls.enable","true");
+            prop.put("mail.smtp.host", host);
+            prop.put("mail.smt.clave", clave );
+            
+        } catch (Exception e) {
+
+        }
+        return enviado;
+    }
+
 }
-
-    
-
-
-
-    
-
