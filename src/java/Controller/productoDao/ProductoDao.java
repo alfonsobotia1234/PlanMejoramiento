@@ -1,4 +1,4 @@
-package Controller.productoDao;
+    package Controller.productoDao;
 
 import Model.Conexion;
 import Model.Producto;
@@ -28,28 +28,9 @@ public class ProductoDao {
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
-    
-    public Producto listarId(int id){
-        String sql="select * from producto where id_producto="+id;
-        Producto p= new Producto();
-        try {
-           con=cn.getConexion();
-           ps=con.prepareStatement(sql);
-           rs=ps.executeQuery();
-           while(rs.next()){
-               p.setIdProducto(rs.getInt(1));
-               p.setImagProducto(rs.getBinaryStream(2));
-               p.setNomProducto(rs.getString(3));
-               p.setPrecio(rs.getInt(4));
-               
-           }
-        } catch (Exception e) {
-        }
-        return p;
-    }
 
     public List listar() {
-        List<Producto> productos = new ArrayList();
+        List<Producto>productos=new ArrayList();
         String sql = "select * from producto";
         try {
             con = cn.getConexion();
@@ -57,7 +38,7 @@ public class ProductoDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Producto p = new Producto();
-                p.setIdProducto(rs.getInt(1));
+                p.setId(rs.getInt(1));
                 p.setImagProducto(rs.getBinaryStream(2));
                 p.setNomProducto(rs.getString(3));
                 p.setPrecio(rs.getInt(4));
@@ -70,22 +51,21 @@ public class ProductoDao {
         return productos;
     }
 
-    public void listarImagen(int id, HttpServletResponse reponse) {
-        String sql = "select * from producto where id_Producto=?";
+    public void listarImagen(int id, HttpServletResponse response) {
+        String sql = "select * from producto where id_Producto="+id;
         InputStream inputStream = null;
         OutputStream outputStream = null;
         BufferedInputStream bufferedInputStream = null;
         BufferedOutputStream bufferedOutputStream = null;
+        response.setContentType("image/*");
         try {
-            outputStream = reponse.getOutputStream();
+            outputStream = response.getOutputStream();
             con = cn.getConexion();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
             rs = ps.executeQuery();
-            
             if (rs.next());
             {
-                inputStream = rs.getBinaryStream("imagProducto");
+                inputStream = rs.getBinaryStream(2);
                 System.out.println("Encuentra un inaaresultado adicional ");
             }
             
@@ -109,6 +89,7 @@ public class ProductoDao {
         }
 System.out.print("Ya tiene la imahen en memori a ");
     }
+    
   public void agregar(Producto p){
       
         System.out.println("Nombre "+ p.getNomProducto());

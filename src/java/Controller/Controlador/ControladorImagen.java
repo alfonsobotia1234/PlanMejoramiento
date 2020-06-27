@@ -15,38 +15,28 @@ import javax.servlet.http.HttpServletResponse;
 public class ControladorImagen extends HttpServlet {
 
     ProductoDao dao= new  ProductoDao();
-    
-    
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        
-        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet literal</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet literal at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * 
-     * 
-     * 
-     * https://stackoverflow.com/questions/5243726/how-to-display-an-image-in-jsp
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  processRequest(request, response);
-      
-      String temp = request.getParameter("id_producto");
-        System.out.println("Print request.getParameter(\"id_producto: " + temp);
-          response.setContentType("image/jpg");
-       int id =Integer.parseInt(temp);
+       int id =Integer.parseInt(request.getParameter("id"));
         dao.listarImagen(id, response);
         
         

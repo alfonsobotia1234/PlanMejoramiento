@@ -47,34 +47,35 @@
                 </button>
                 <div class="collapse navbar-collapse" >
                     <ul class="navbar-nav mr-auto">
-                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Registro
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="registrarUsuario.jsp">Usuario</a>
-                            <a class="dropdown-item" href="registrarDocumento.jsp">Tipo de documento</a>
-                            <a class="dropdown-item" href="agregar.jsp">Agregar nuevo producto</a>
-                        </div>
-                    </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           Consultar
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="consultarUsuario.jsp">Usuario</a>
-                            <a class="dropdown-item" href="consultarDocumento.jsp">Tipo de documento</a>
-                            <a class="dropdown-item" href="consultarProducto.jsp">Producto</a>
-                           
-                        </div>
-                    </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#"><i class="fas fa-cart-plus">(<label style="color: ">${contador}</label>)</i> Carrito de compras</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Registro
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="registrarUsuario.jsp">Usuario</a>
+                                <a class="dropdown-item" href="registrarDocumento.jsp">Tipo de documento</a>
+                                <a class="dropdown-item" href="agregar.jsp">Agregar nuevo producto</a>
+                            </div>
                         </li>
-                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Consultar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="consultarUsuario.jsp">Usuario</a>
+                                <a class="dropdown-item" href="consultarDocumento.jsp">Tipo de documento</a>
+                                <a class="dropdown-item" href="consultarProducto.jsp">Producto</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="menuUsuario.jsp">Menu Usuario</a>
+                        </li>
+
                         <li class="nav-item active">
                             <a class="nav-link" href="Salir.jsp">Cerrar Sesión</a>
                         </li>
+
                     </ul>
                     <form class="form-inline mt-2 mt-md-0">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -90,7 +91,7 @@
             </div>
 
             <!--este es el espacio de los productos-->
-           
+
         </main>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>

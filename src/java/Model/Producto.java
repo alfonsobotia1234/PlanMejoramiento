@@ -10,7 +10,7 @@ public class Producto {
     public static void add(Producto p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    int idProducto;
+    int id;
     InputStream imagProducto;
     String nomProducto;
     int precio;
@@ -18,19 +18,19 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int idProducto, InputStream imagProducto, String nomProducto, int precio) {
-        this.idProducto = idProducto;
+    public Producto(int id, InputStream imagProducto, String nomProducto, int precio) {
+        this.id = id;
         this.imagProducto = imagProducto;
         this.nomProducto = nomProducto;
         this.precio = precio;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getId() {
+        return id;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public InputStream getImagProducto() {
