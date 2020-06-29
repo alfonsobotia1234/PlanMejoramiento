@@ -119,8 +119,35 @@ System.out.print("Ya tiene la imahen en memori a ");
             
        
         }
-           
-            
-        
     }
+  //Metodo para consultar y porteriormente agregar al carrito
+    public Producto consultarId(int id_producto) {
+
+        Conexion cn = new Conexion();
+        String sql = "SELECT * FROM producto WHERE id_producto=" + id_producto;
+        Producto pro = new Producto();
+        try {
+            con = cn.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                pro.setId(rs.getInt(1));
+                pro.setImagProducto(rs.getBinaryStream(2));
+                pro.setNomProducto(rs.getString(3));
+                pro.setPrecio(rs.getInt(4));
+                
+            }
+        } catch (SQLException e) {
+        }
+
+        return pro;
+    }
+
+    public static void main(String[] args) {
+        ProductoDao pdao = new ProductoDao();
+        pdao.listar();
+    }
+
+   
 }

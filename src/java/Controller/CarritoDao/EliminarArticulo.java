@@ -1,36 +1,41 @@
-package Controller.UsuarioDao;
+package Contrlador;
 
-import Model.Consultas;
+import Modelo.Carrito;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class RegistrarUsuario extends HttpServlet {
+/**
+ *
+ * @author Andres Alvarez
+ */
+public class EliminarArticulo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String numdoc = request.getParameter("documento");
-        String nombres = request.getParameter("nombres");
-        String apelldios = request.getParameter("apellidos");
-        String correo = request.getParameter("correo");
-        String contra = request.getParameter("contrasenia");
-        String rol = request.getParameter("rol");
-        int tipoDocumentoId = Integer.parseInt(request.getParameter("tipodoc"));
 
+        int id_articulo = Integer.parseInt(request.getParameter("id_producto"));
 
-        Consultas co = new Consultas();
-        if (co.registrarUsuario(numdoc, nombres, apelldios, correo, contra,rol ,tipoDocumentoId)) {
-           response.sendRedirect("index.jsp");
+        HttpSession sesion = request.getSession(true);
+        ArrayList<Carrito> lista = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
-        } else {
-            response.sendRedirect("registrarUsuario.jsp");
+        if (lista != null) {
+            for (Carrito c : lista) {
+                if (c.getId_producto() == id_articulo) {
+                    lista.remove(c);                  
+                    break;
+                }
+            }
         }
+        
+        
+        response.sendRedirect("carrito.jsp");
 
     }
 
@@ -72,6 +77,5 @@ public class RegistrarUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }

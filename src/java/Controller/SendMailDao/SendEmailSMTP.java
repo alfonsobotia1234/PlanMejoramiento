@@ -25,7 +25,7 @@ public class SendEmailSMTP {
     
   public  void enviarConGMail(String destinatario, String asunto, String cuerpo) {
 
-      destinatario = "usercall.hm@gmail.com";
+     
       
        // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
      String remitente = "Recuperarcontrasenia04@gmail.com";  //Para la dirección nomcuenta@gmail.com

@@ -42,7 +42,7 @@
     </head>
     <body>
         <header>
-           
+
             <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
                 <a class="navbar-brand" href="menuUsuario.jsp">Caterpillar</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
                             <a class="nav-link" href="contactarVendedor.jsp">Contactar vendedor </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#"><i class="fas fa-cart-plus">(<label style="color: ">${contador}</label>)</i> Carrito de compras</a>
+                            <a class="nav-link" href="carrito.jsp"><i class="fas fa-cart-plus"></i> Carrito de compras</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="Salir.jsp">Cerrar Sesión</a>
@@ -91,27 +91,19 @@
             <div class="container marketing">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card">
                             <div class="card-header">
                                 <img src="ControladorImagen?id=<%=rs.getString("id_producto")%>"
                                      <br>
-                                
-                                <h2><%=rs.getString("nombre_producto")%></h2>
-                                <i><%=rs.getString("precio")%><i>
-                                        
-                                        <div>
-                                            <p><a class="btn btn-warning" href="Controlador?accion=AgregarCarrito=${p.getId()}" role="button">Agregar al Carrito</a></p>
-                                            <p><a class="btn btn-warning" href="" role="button">Alquilar</a></p>
-
-
-                                        </div>
-
-                                        </div>
-
-                                        </div><!-- /.col-lg-4 -->
-
-                                        </div>
-                                        </div>
+                               <h2><%=rs.getString("nombre_producto")%></h2>
+                               <i>$.<%=rs.getString("precio")%><i>
+                            <div>
+                            <p><a class="btn btn-warning" href="" role="button">Detalles</a></p>
+                            <p><a class="btn btn-warning" href="" role="button">Alquilar</a></p>
+                            </div>
+                        </div>
+                    </div><!-- /.col-lg-4 -->
+                 </div>
+             </div>
                                         <%}
                                             } catch (SQLException e) {
                                                 System.out.println("Error" + e);

@@ -29,11 +29,7 @@ public class InicioSesion extends HttpServlet {
             objsesion.setAttribute("usuario", "1");
             objsesion.setAttribute("nombre", nombre);
             objsesion.setAttribute("documento", usuario);
-            
-            
-            SendEmailSMTP s = new SendEmailSMTP(); 
-            s.enviarConGMail("usercall.hm@gmail.com", "Prueba ", usuario + nombre + rol );
-            
+
             if (rol.equals("Administrador")) {
                 objsesion.setAttribute("rol", rol);
                 response.sendRedirect("menuAdministrador.jsp");

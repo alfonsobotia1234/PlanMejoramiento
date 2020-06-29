@@ -1,4 +1,3 @@
-
 package Controller.AdministradorDao;
 
 import Model.Consultas;
@@ -25,12 +24,12 @@ public class RegistrarAdministrador extends HttpServlet {
         String apelldios = request.getParameter("apellidos");
         String correo = request.getParameter("correo");
         String contra = request.getParameter("contrasenia");
-        String estado = request.getParameter("estado");
-        String tipoDocumentoId = request.getParameter("tipodoc");
+        String rol  = request.getParameter("rol");
+        int tipoDocumentoId = Integer.parseInt(request.getParameter("tipodoc"));
 
 
         Consultas co = new Consultas();
-        if (co.registrarUsuario(numdoc, nombres, apelldios, correo, contra, estado,tipoDocumentoId)) {
+        if (co.registrarUsuario(numdoc, nombres, apelldios, correo, contra, rol,tipoDocumentoId)) {
            response.sendRedirect("index.jsp");
 
         } else {

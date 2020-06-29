@@ -1,37 +1,47 @@
-package Controller.UsuarioDao;
+package Controller.AlquilerDao;
 
-import Model.Consultas;
+import Controller.AlquilerDao.Alquiler;
+import Controller.AlquilerDao.AlquilerDAO;
+import Modelo.Carrito;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class RegistrarUsuario extends HttpServlet {
+public class AlquilerGenerar extends HttpServlet {
+
+    AlquilerDAO adao = new AlquilerDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String numdoc = request.getParameter("documento");
-        String nombres = request.getParameter("nombres");
-        String apelldios = request.getParameter("apellidos");
-        String correo = request.getParameter("correo");
-        String contra = request.getParameter("contrasenia");
-        String rol = request.getParameter("rol");
-        int tipoDocumentoId = Integer.parseInt(request.getParameter("tipodoc"));
+        try (PrintWriter out = response.getWriter()) {
 
+            int precio_alquiler = Integer.parseInt(request.getParameter("precio_alquiler"));
+            String fecha_entrega = request.getParameter("fecha_entrega");
+            String fecha_devolucion = request.getParameter("fecha_devolucion");
+            String numero_documento = request.getParameter("numero_documento");
+            
 
-        Consultas co = new Consultas();
-        if (co.registrarUsuario(numdoc, nombres, apelldios, correo, contra,rol ,tipoDocumentoId)) {
-           response.sendRedirect("index.jsp");
+            HttpSession sesion = request.getSession(true);
+            ArrayList<Carrito> lista = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
-        } else {
-            response.sendRedirect("registrarUsuario.jsp");
+            Alquiler alquiler = new Alquiler(precio_alquiler, fecha_entrega, fecha_devolucion, numero_documento, precio_alquiler, lista);
+            
+            int res = adao.generarAlquiler(alquiler);
+            
+            if(res != 0){
+                sesion.setAttribute("carrito", null);
+                response.sendRedirect("menuUsuario.jsp");
+            }else{
+                response.sendRedirect("carrito.jsp");
+            }
+            
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,6 +82,5 @@ public class RegistrarUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }

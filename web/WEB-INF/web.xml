@@ -56,6 +56,14 @@
         <servlet-name>SendMail</servlet-name>
         <servlet-class>Controller.SendMailDao.SendMail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AñadirAlCarrtio</servlet-name>
+        <servlet-class>Controller.productoDao.AñadirAlCarrtio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>java</servlet-name>
+        <servlet-class>RegistrarAdministrador.java</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
         <url-pattern>/Iniciar</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>SendMail</servlet-name>
         <url-pattern>/SendMail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AñadirAlCarrtio</servlet-name>
+        <url-pattern>/A_adirAlCarrtio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>java</servlet-name>
+        <url-pattern>/java</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
