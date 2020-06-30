@@ -65,19 +65,20 @@ public class Consultas extends Conexion {
     }
 
     //Metodo para registrar usuario
-    public boolean registrarUsuario(String numeroDocumento, String nombres, String apellidos, String correo, String contrasenia, String estado, String tipoDocumentoId) {
+    public boolean registrarUsuario(String numeroDocumento, String nombres, String apellidos, String correo, String contrasenia,String rol, int tipoDocumentoId) {
 
         PreparedStatement pst = null;
         try {
 
-            String sql = "INSERT INTO Caterpillar.usuario (id_usuario,numero_documento,nombres,apellidos,correo,contrasenia,tipo_documento_id) VALUES(NULL,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Caterpillar.usuario (id_usuario,numero_documento,nombres,apellidos,correo,contrasenia,rol,tipo_documento_id) VALUES(NULL,?,?,?,?,?,?,?)";
             pst = getConexion().prepareStatement(sql);
             pst.setString(1, numeroDocumento);
             pst.setString(2, nombres);
             pst.setString(3, apellidos);
             pst.setString(4, correo);
             pst.setString(5, contrasenia);
-            pst.setString(6, tipoDocumentoId);
+            pst.setString(6, contrasenia);
+            pst.setInt(7, tipoDocumentoId);
 
             if (pst.executeUpdate() == 1) {
                 return true;
@@ -100,6 +101,10 @@ public class Consultas extends Conexion {
         }
         return false;
     }
+   /* public static void main(String[] args) {
+        Consultas con=new Consultas();
+        con.registrarUsuario("63460963", "Sandra", "Alviz", "sandra@gmail.com", "12345","", 3);
+    }*/
 
     //Metodo para eliminar usuarios
     public boolean eliminarUsuario(String numeroDoc) {
@@ -470,6 +475,238 @@ public class Consultas extends Conexion {
 
         }
         return enviado;
+    }
+
+    public String mailUsuarioEnDataBase(String usuario) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select correo from usuario where numero_Documento = ?";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, usuario);
+        
+            rs = pst.executeQuery();
+
+            String correo  = "";
+
+            if (rs.absolute(1)) {
+
+                correo = rs.getString("correo");
+                return correo;
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return "";
+        
+    
+        
+        
+    }
+
+    public String recuperarContraseniaDB(String usuario) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select contrasenia from usuario where numero_documento = ?";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, usuario);
+        
+            rs = pst.executeQuery();
+
+            String contrasenia  = "";
+
+            if (rs.absolute(1)) {
+
+                contrasenia = rs.getString("contrasenia");
+                
+                System.out.println("Model.Consultas.recuperarContraseniaDB()  la conar " + contrasenia);
+                return contrasenia;
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return "";
+
+    }
+    
+   
+
+    public boolean correoIsValid(String correo) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select * from usuario where correo  = ?";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, correo );
+        
+            rs = pst.executeQuery();
+
+            String contrasenia  = "";
+
+            if (rs.absolute(1)) {
+
+                contrasenia = rs.getString("contrasenia");
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return false;
+
+    }
+
+    public String getUserName(String nombreUser, String mailUser) {
+           PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select numero_documento from usuario where nombres  = ? and correo = ? ";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, nombreUser);
+            pst.setString(2, mailUser);
+            
+            rs = pst.executeQuery();
+
+            String contrasenia  = "";
+
+            if (rs.absolute(1)) {
+
+                contrasenia = rs.getString("numero_documento");
+                return contrasenia;
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return "";
+    }
+
+    public String obtnerIDusuario(String usuario, String password) {
+         PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select id_usuario from usuario where numero_Documento = ? and Contrasenia = ?";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, usuario);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+
+            String id = "";
+
+            if (rs.absolute(1)) {
+
+              id =  rs.getString("id_usuario");
+              
+                return id;
+
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return "";
     }
 
 }

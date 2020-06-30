@@ -1,5 +1,7 @@
 package Controller.RecuperarContraseñaDao;
 
+import Controller.SendMailDao.SendEmailSMTP;
+import Model.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,10 +21,11 @@ public class RecuperarContrasenia extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RecuperarContrasenia</title>");            
+            out.println("<title>Servlet RecuperarContrasenia</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RecuperarContrasenia at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RecuperarContrasenia at " + request.getAttribute("mail") + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -40,17 +43,48 @@ public class RecuperarContrasenia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        processRequest(request, response);
+
     }
-    
-   
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        Consultas co = new Consultas();
+        String pass = "";
 
+        String nombreUser = request.getParameter("nombres");
+        String mailUser = request.getParameter("correo");
+        
+      
+
+        if (nombreUser.equalsIgnoreCase("") && mailUser.equalsIgnoreCase("")) {
+
+            request.setAttribute("msg", "Nombre o correo invalido ");
+            request.getRequestDispatcher("recuperarContrasenia.jsp").forward(request, response);
+
+        } else {
+              System.out.println("Controller.RecuperarContraseñaDao.RecuperarContrasenia.doPost()" + nombreUser + "   "+ mailUser);
+            boolean isEnviarCorreo = co.correoIsValid(mailUser);
+            
+            if(isEnviarCorreo){
+               String  userName = co.getUserName(nombreUser,mailUser); 
+                pass = co.recuperarContraseniaDB(userName);
+                SendEmailSMTP s = new SendEmailSMTP();
+                s.enviarConGMail(mailUser, "Recuperar Contraseña  ", "Su contraseña es: " + pass);
+             }
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+           
+        }
+       
+
+      
+
+            
+
+        
+       
+        // processRequest(request, response);
+    }
 
     @Override
     public String getServletInfo() {

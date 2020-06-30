@@ -113,7 +113,8 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("menuUsuario.jsp").forward(request, response);
                     
                     break;
-              default:
+            
+                 default:
                   request.getRequestDispatcher("Controlador?accion=listar").forward(request, response);
  }
     }

@@ -24,16 +24,19 @@ public class InicioSesion extends HttpServlet {
 
         String nombre = co.autenticacion(usuario, password);
         String rol =  co.autenticacionRol(usuario, password);
+       
+      
+        
+        String id_usuario = co.obtnerIDusuario(usuario, password);
+        objsesion.setAttribute("id", id_usuario);
+        
+        
         if (nombre != "") {
 
             objsesion.setAttribute("usuario", "1");
             objsesion.setAttribute("nombre", nombre);
             objsesion.setAttribute("documento", usuario);
-            
-            
-            SendEmailSMTP s = new SendEmailSMTP(); 
-            s.enviarConGMail("usercall.hm@gmail.com", "Prueba ", usuario + nombre + rol );
-            
+
             if (rol.equals("Administrador")) {
                 objsesion.setAttribute("rol", rol);
                 response.sendRedirect("menuAdministrador.jsp");

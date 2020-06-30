@@ -40,7 +40,7 @@
 
             <button class="btn btn-lg btn-warning btn-block" value="Ingresar" type="submit">Ingresar</button>
             <p class="mt-5 mb-3 text-muted">No tienes cuenta ----> <a href="registrarUsuario.jsp" style="color: black;">Registrarse</a></p>
-            <p class="mt-5 mb-3 text-muted"> <a href="recuperarContraseña.jsp" style="color: black;">¿Olvidaste tu contraseña?</a></p>
+            <p class="mt-5 mb-3 text-muted"> <a href="recuperarContrasenia.jsp" style="color: black;">¿Olvidaste tu contraseña?</a></p>
         </form>
     </body>
 </html>

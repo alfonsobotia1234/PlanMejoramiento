@@ -84,7 +84,7 @@
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
-        </div>
+          
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="country">Tipo de documento</label>
@@ -97,7 +97,14 @@
                             <option value="8">Tarjeta pasaporte</option> 
             </select>
           </div>
-          
+            <div class="col-md-6 mb-3"> 
+            <label for="firstName"></label>
+            <div class="col-md-6 mb-3">
+            <input name="rol" type="hidden" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+            </div>
         </div>
         <hr class="mb-4">
         <button class="btn btn-outline-warning btn-lg btn-block" type="submit">Registrar</button>
