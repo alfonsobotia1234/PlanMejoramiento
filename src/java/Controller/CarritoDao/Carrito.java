@@ -1,9 +1,9 @@
 
-package Modelo;
+package Controller.CarritoDao;
 
 /**
  *
- * @author Andres Alvarez
+ * @author User
  */
 public class Carrito {
     

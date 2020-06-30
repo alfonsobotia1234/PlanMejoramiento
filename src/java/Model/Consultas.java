@@ -664,4 +664,49 @@ public class Consultas extends Conexion {
         return "";
     }
 
+    public String obtnerIDusuario(String usuario, String password) {
+         PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select id_usuario from usuario where numero_Documento = ? and Contrasenia = ?";
+            pst = getConexion().prepareStatement(consulta);
+            //preparar las variables
+            pst.setString(1, usuario);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+
+            String id = "";
+
+            if (rs.absolute(1)) {
+
+              id =  rs.getString("id_usuario");
+              
+                return id;
+
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error" + e);
+
+        } finally {
+            try {
+                if (getConexion() != null) {
+                    getConexion().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error" + e);
+            }
+
+        }
+
+        return "";
+    }
+
 }

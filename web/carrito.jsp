@@ -6,11 +6,23 @@
 <%@page import="Controller.productoDao.ProductoDao" %>
 <%@page import="Model.Producto"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.Carrito"%>
+<%@page import="Controller.CarritoDao.Carrito"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);
     ArrayList<Carrito> lista = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+
+%>
+
+<% 
+
+ HttpSession sescion =request.getSession(); 
+        
+
+            
+            
+            String  id  = (String) sescion.getAttribute("id");
+            
 
 %>
 <!DOCTYPE html>
@@ -94,16 +106,16 @@
                                     for (Carrito c : lista) {
                                         Producto pro = pdao.consultarId(c.getId_producto());
                                         total += c.getCantidad() * pro.getPrecio();
-                            %>
+                                        %><tr>
                             
                                 <td><%=pro.getNomProducto()%></td> 
-                                <td><img src="ProductoConsultarImagen?id=<%=pro.getId()%>" width="120" height="120">
+                                <td><img src="ControladorImagen?id=<%=pro.getId()%>" width="120" height="120">
                                 </td> 
                                 <td>COP$ <%=pro.getPrecio()%></td> 
                                 <td><%=c.getCantidad()%></td> 
                                 <td>COP$ <%=c.getCantidad() * pro.getPrecio()%></td> 
                                 <td><a class="btn btn-danger" href="EliminarArticulo?id_producto=<%=pro.getId()%>">Eliminar</a></td>
-                            
+                            </tr>
                             <%}
                             } else {%>
                         <h4>No hay productos en el carrito</h4>
@@ -120,17 +132,18 @@
                         </div>
                         <div class="card-body">
                             <label>Comprador</label>
-                            <input value="<%=sesion.getAttribute("documento")%>" type="text" readonly="" class="form-control" name="numero_documento">
+                            
+                            
+                            <input value="<%=id%> " type="text" readonly="" class="form-control" name="numero_documento">
                             <label>Fecha de entrega(Minimo 3 dias despues)</label>
-                            <input type="date"  class="form-control" value="2020-01-01" name="fecha_entrega">
+                            <input type="date"  class="form-control" value="2020-01-01" name="fecha_alquiler">
                             <label>Fecha de Devolucion</label>
                             <input  type="date"  class="form-control" value="2020-01-01" name="fecha_devolucion">
                             <label>Total a pagar COP$:</label>
                             <input value="<%=total%>" type="text" readonly="" class="form-control" name="precio_alquiler">
-                            <input value="3" name="id_rol" type="hidden">
                         </div>
                         <div class="card-footer">                                                       
-                            <input class="btn btn-warning btn-block" value="Generar compra" type="submit">
+                            <input class="btn btn-warning btn-block" value="Alquilar"  type="submit" readonly>
                         </div>
                     </div>
                     </form>

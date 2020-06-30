@@ -42,6 +42,5 @@
             <p class="mt-5 mb-3 text-muted">No tienes cuenta ----> <a href="registrarUsuario.jsp" style="color: black;">Registrarse</a></p>
             <p class="mt-5 mb-3 text-muted"> <a href="recuperarContrasenia.jsp" style="color: black;">¿Olvidaste tu contraseña?</a></p>
         </form>
-        <h2><=% msg %></h2>
     </body>
 </html>

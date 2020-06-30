@@ -28,8 +28,8 @@ public class SendEmailSMTP {
      
       
        // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
-     String remitente = "Recuperarcontrasenia04@gmail.com";  //Para la dirección nomcuenta@gmail.com
-String clave = "Hola1234";
+    String remitente = "Recuperarcontrasenia04@gmail.com";  //Para la dirección nomcuenta@gmail.com
+    String clave = "Hola1234";
     Properties props = System.getProperties();
     props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
     props.put("mail.smtp.user", remitente);

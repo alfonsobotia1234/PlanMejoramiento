@@ -24,6 +24,13 @@ public class InicioSesion extends HttpServlet {
 
         String nombre = co.autenticacion(usuario, password);
         String rol =  co.autenticacionRol(usuario, password);
+       
+      
+        
+        String id_usuario = co.obtnerIDusuario(usuario, password);
+        objsesion.setAttribute("id", id_usuario);
+        
+        
         if (nombre != "") {
 
             objsesion.setAttribute("usuario", "1");

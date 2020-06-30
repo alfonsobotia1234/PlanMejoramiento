@@ -91,15 +91,21 @@
             <div class="container marketing">
                 <div class="row">
                     <div class="col-lg-4">
-                            <div class="card-header">
+                        <form action="CarritoAgregar" method="POST">
+                             <div class="card-header">
                                 <img src="ControladorImagen?id=<%=rs.getString("id_producto")%>"
                                      <br>
-                               <h2><%=rs.getString("nombre_producto")%></h2>
+                               <h2><%=rs.getString("nombre_producto")%></h2> 
                                <i>$.<%=rs.getString("precio")%><i>
+                                       <br>
+                               <label>Cantidad:</label>
+                              <input type="number" name="cantidad" value="1">
+                              <input type="hidden" value="<%=rs.getString("id_producto")%>"  name="id_producto"
+                               
                             <div>
-                            <p><a class="btn btn-warning" href="" role="button">Detalles</a></p>
-                            <p><a class="btn btn-warning" href="" role="button">Alquilar</a></p>
+                            <input class="btn btn-warning" type="submit" value="Añadir al carrito">
                             </div>
+                          </form>         
                         </div>
                     </div><!-- /.col-lg-4 -->
                  </div>

@@ -1,10 +1,10 @@
-package Contrlador;
+package Controller.CarritoDao;
 
-import Modelo.Carrito;
+import Controller.CarritoDao.Carrito;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +12,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Andres Alvarez
+ * @author user
  */
+@WebServlet(name = "CarritoAgregar", urlPatterns = {"/CarritoAgregar"})
 public class CarritoAgregar extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

@@ -70,8 +70,7 @@ public class RecuperarContrasenia extends HttpServlet {
                String  userName = co.getUserName(nombreUser,mailUser); 
                 pass = co.recuperarContraseniaDB(userName);
                 SendEmailSMTP s = new SendEmailSMTP();
-                mailUser = "alfonsobotia8@gmail.com";
-                s.enviarConGMail(mailUser, "prueba 2  ", "Su contraes es: " + pass);
+                s.enviarConGMail(mailUser, "Recuperar Contraseña  ", "Su contraseña es: " + pass);
              }
                 request.getRequestDispatcher("index.jsp").forward(request, response);
            
