@@ -3,10 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Desktop/Caterpillar/src/java/Model/Consultas.java</file>
-            <file>file:/C:/Users/User/Desktop/Caterpillar/src/java/Controller/UsuarioDao/EliminarUsuario.java</file>
-            <file>file:/C:/Users/User/Desktop/Caterpillar/src/java/Controller/UsuarioDao/RegistrarUsuario.java</file>
-            <file>file:/C:/Users/User/Desktop/Caterpillar/web/eliminarUsuario.jsp</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Model/Consultas.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/CarritoDao/CarritoAgregar.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/CarritoDao/EliminarArticulo.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/IniciarSesion/InicioSesion.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/web/menuUsuario.jsp</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Model/Producto.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/CarritoDao/Carrito.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/AlquilerDao/AlquilerGenerar.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/AlquilerDao/AlquilerDAO.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/src/java/Controller/AlquilerDao/Alquiler.java</file>
+            <file>file:/C:/Users/User/Desktop/Caterpillar/Caterpillar/web/carrito.jsp</file>
         </group>
     </open-files>
 </project-private>
