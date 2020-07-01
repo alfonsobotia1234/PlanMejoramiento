@@ -16,7 +16,7 @@
             <div class="container">
                 <br>
                 <h1>Contactar Vendedor</h1>
-                <a href="menuAdministrador.jsp" style="color: white" class="btn btn-success">Volver</a>
+                <a href="menuUsuario.jsp" style="color: white" class="btn btn-warning">Volver</a>
                 <br>
                 <br>
                 <table  class="table table-sm table-bordered table-hover ">

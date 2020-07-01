@@ -65,10 +65,7 @@
                             <a class="nav-link" href="Salir.jsp">Cerrar Sesión</a>
                         </li>
                     </ul>
-                    <form class="form-inline mt-2 mt-md-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                        <button class="btn btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+
                 </div>
             </nav>
         </header>
@@ -89,21 +86,21 @@
             %>
             <!--este es el espacio de los productos-->
             <div class="container marketing">
-                <div class="row">
-                    <div class="col-lg-4">
+               <center> <div class="row"></center>
+                    <center> <div class="col-lg-4"></center>
                         <form action="CarritoAgregar" method="POST">
-                             <div class="card-header">
-                                <img src="ControladorImagen?id=<%=rs.getString("id_producto")%>"
+                           <div class="card-header">
+                               <center> <img src="ControladorImagen?id=<%=rs.getString("id_producto")%>"</center>
                                      <br>
-                               <h2><%=rs.getString("nombre_producto")%></h2> 
-                               <i>$.<%=rs.getString("precio")%><i>
+                              <center> <h2><%=rs.getString("nombre_producto")%></h2> </center>
+                             <center>  <i>$.<%=rs.getString("precio")%><i></center>
                                        <br>
                                <label>Cantidad:</label>
-                              <input type="number" name="cantidad" value="1">
-                              <input type="hidden" value="<%=rs.getString("id_producto")%>"  name="id_producto"
+                              <center><input type="number" name="cantidad" value="1"></center>
+                             <center> <input type="hidden" value="<%=rs.getString("id_producto")%>"  name="id_producto"</center>
                                
                             <div>
-                            <input class="btn btn-warning" type="submit" value="Añadir al carrito">
+                           <center> <input class="btn btn-warning" type="submit" value="Añadir al carrito"></center>
                             </div>
                           </form>         
                         </div>

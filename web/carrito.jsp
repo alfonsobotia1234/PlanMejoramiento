@@ -14,15 +14,10 @@
 
 %>
 
-<% 
+<%    HttpSession sescion = request.getSession();
 
- HttpSession sescion =request.getSession(); 
-        
+    String id = (String) sescion.getAttribute("id");
 
-            
-            
-            String  id  = (String) sescion.getAttribute("id");
-            
 
 %>
 <!DOCTYPE html>
@@ -66,90 +61,104 @@
                 </button>
                 <div class="collapse navbar-collapse" >
                     <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link"><%out.println(session.getAttribute("nombre"));%><span class="sr-only">(current)</span></a>
-                    </li>
+                        <li class="nav-item active">
+                            <a class="nav-link"><%out.println(session.getAttribute("nombre"));%><span class="sr-only">(current)</span></a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="menuUsuario.jsp"><i class="fas fa-cart-plus"><label style="color: crimson"></label></i>Seguir Comprando</a>
-                    </li>
-
-
-                </ul>
-            </div>
-        </nav>
-
-        <div class="container mt-4">
-            <h3>Carrito</h3>
-            <br>
-            <div class="row">
-                <div class="col-sm-8">
-                    <table  class="table table-hover">
+                        <li class="nav-item">
+                            <a class="nav-link" href="menuUsuario.jsp"><i class="fas fa-cart-plus"><label style="color: crimson"></label></i>Seguir Comprando</a>
+                        </li>
 
 
-                        <thead>
-                            <tr>
+                    </ul>
+                </div>
+            </nav>
 
-                                <th>NOMBRES</th>
-                                <th>IMAGEN</th>
-                                <th>PRECIO</th>
-                                <th>CANTIDAD</th>
-                                <th>SUBTOTAL</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% ProductoDao pdao = new ProductoDao();
+            <div class="container mt-4">
+                <h3>Carrito</h3>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <table  class="table table-hover">
 
-                                int total = 0;
-                                if (lista != null) {
-                                    for (Carrito c : lista) {
-                                        Producto pro = pdao.consultarId(c.getId_producto());
-                                        total += c.getCantidad() * pro.getPrecio();
-                                        %><tr>
-                            
-                                <td><%=pro.getNomProducto()%></td> 
-                                <td><img src="ControladorImagen?id=<%=pro.getId()%>" width="120" height="120">
-                                </td> 
-                                <td>COP$ <%=pro.getPrecio()%></td> 
-                                <td><%=c.getCantidad()%></td> 
-                                <td>COP$ <%=c.getCantidad() * pro.getPrecio()%></td> 
-                                <td><a class="btn btn-danger" href="EliminarArticulo?id_producto=<%=pro.getId()%>">Eliminar</a></td>
-                            </tr>
-                            <%}
+
+                            <thead>
+                                <tr>
+
+                                    <th>NOMBRES</th>
+                                    <th>IMAGEN</th>
+                                    <th>PRECIO</th>
+                                    <th>CANTIDAD</th>
+                                    <th>SUBTOTAL</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% ProductoDao pdao = new ProductoDao();
+                                    int descuento = 0;
+                                    int total = 0;
+                                    int total2=0;
+                                    if (lista != null) {
+                                        
+                                        for (Carrito c : lista) {
+                                            
+                                            Producto pro = pdao.consultarId(c.getId_producto());
+                                            total += (c.getCantidad() * pro.getPrecio()) ;
+                                           if(c.getCantidad() >= 4 || c.getId_producto() >3)
+                                         descuento -= total  *10/100;
+                                           total2 += (c.getCantidad() * pro.getPrecio())+descuento ;
+                                             
+                                             
+                                             
+                                            
+                                %><tr>
+
+                                    <td><%=pro.getNomProducto()%></td> 
+                                    <td><img src="ControladorImagen?id=<%=pro.getId()%>" width="120" height="120">
+                                    </td> 
+                                    <td>COP$ <%=pro.getPrecio()%></td> 
+                                    <td><%=c.getCantidad()%></td> 
+                                    <td>COP$ <%=c.getCantidad() * pro.getPrecio()%></td> 
+                                    <td><a class="btn btn-danger" href="EliminarArticulo?id_producto=<%=pro.getId()%>">Eliminar</a></td>
+                                </tr>
+                                <%}
                             } else {%>
-                        <h4>No hay productos en el carrito</h4>
+                            <h4>No hay productos en el carrito</h4>
                             <%}%> 
-                        </tbody>
+                            </tbody>
 
-                    </table>
-                </div>
-                <div class="col-sm-4">
-                    <form action="AlquilerGenerar" method="POST">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Generar Compra</h3>
-                        </div>
-                        <div class="card-body">
-                            <label>Comprador</label>
-                            
-                            
-                            <input value="<%=id%> " type="text" readonly="" class="form-control" name="numero_documento">
-                            <label>Fecha de entrega(Minimo 3 dias despues)</label>
-                            <input type="date"  class="form-control" value="2020-01-01" name="fecha_alquiler">
-                            <label>Fecha de Devolucion</label>
-                            <input  type="date"  class="form-control" value="2020-01-01" name="fecha_devolucion">
-                            <label>Total a pagar COP$:</label>
-                            <input value="<%=total%>" type="text" readonly="" class="form-control" name="precio_alquiler">
-                        </div>
-                        <div class="card-footer">                                                       
-                            <input class="btn btn-warning btn-block" value="Alquilar"  type="submit" readonly>
-                        </div>
+                        </table>
                     </div>
-                    </form>
+                    <div class="col-sm-4">
+                        <form action="AlquilerGenerar" method="POST">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Generar Alquiler</h3>
+                                </div>
+                                <div class="card-body">
+                                    <label>Comprador</label>
+
+
+                                    <input value="<%=id%> " type="text" readonly="" class="form-control" name="numero_documento">
+                                    <label>Fecha de entrega</label>
+                                    <input type="date"  class="form-control" value="2020-01-01" name="fecha_alquiler">
+                                    <label>Fecha de Devolucion</label>
+                                    <input  type="date"  class="form-control" value="2020-01-01" name="fecha_devolucion">
+                                    <label>Total a pagar COP$:</label>
+                                    <input value="<%=total%>" type="text" readonly="" class="form-control" name="total">
+                                    <label>Descuento</label>
+                                    <input value="<%=descuento%>" type="text" readonly="" class="form-control" name="descuento">
+                                    <label>Total con descuento COP$</label>
+                                    <input value="<%=total2%>" type="text" readonly="" class="form-control" name="precio_alquiler">
+                                </div>
+                                <div class="card-footer">                                                       
+                                    <input class="btn btn-warning btn-block" value="Alquilar"  type="submit" readonly>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </div> 
+            </div> 
     </body>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
