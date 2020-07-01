@@ -37,6 +37,7 @@ public class CarritoAgregar extends HttpServlet {
                     comprobacion = true;
                     break;
                 }
+               
             }
         }
 
@@ -44,6 +45,8 @@ public class CarritoAgregar extends HttpServlet {
             lista.add(new Carrito(id_producto, cantidad));
         }
 
+     
+        
         sesion.setAttribute("carrito", lista);
         
         response.sendRedirect("carrito.jsp");
