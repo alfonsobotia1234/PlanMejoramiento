@@ -39,8 +39,9 @@
         </style>
         <!-- Custom styles for this template -->
         <link href="css/carousel.css" rel="stylesheet" type="text/css"/>
+         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <h1 align="center">Su producto fue alquilado con exito, pronto tendra el producto acordado</h1>
+    
     
     <body>   
         <header>
@@ -53,12 +54,18 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                         <li class="nav-item active">
-                            <a class="nav-link" href="menuUsuario.jsp">Menu</a>
-
                         </li>
 
                     </ul>
+                    </div>  
+            </nav>
+                    </header>  
+
+        <div class="container">
+            <h1 id="mensaje">Su producto fue alquilado con exito, pronto tendra el producto acordado.</h1>   
+            <center> <img src="imagenes/chulito.png"   alt="" ></center>    
+            <a href="menuUsuario.jsp" class="btn btn-warning btn-block mt-5">Volver al menu</a>
+        </div>
                    
-                        
    </body>
  </html>
