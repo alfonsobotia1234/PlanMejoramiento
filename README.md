@@ -27,7 +27,7 @@ Las librerias que se requirieron fueron:
 
 Para poder desplegar este proyecto necesitara todas las librerias que estaran en el repositorio de git hub, un editor de codigo y el conector a la base de datos.
 
-url del aplicativo en AWS (se va actualizando): [http://100.26.217.100:8080/Caterpillar]
+url del aplicativo en AWS: [http://52.7.154.10:8080/Caterpillar/]
 
 sobre: Este proyecto se llevo a cabo gracias a un plan de mejoramiento.
 Autor: Alfonso Rafael Botia Alviz
