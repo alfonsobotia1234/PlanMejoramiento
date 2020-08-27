@@ -76,37 +76,46 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Consultar Usuario</title>
 
-    </head>
-    <body>
-        <link href="css/Styleconsultas.css" rel="stylesheet" type="text/css"/>
+        
+         <link href="css/Styleconsultas.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="font/fontello.css" rel="stylesheet" type="text/css"/>
-       
+       <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div  id ="consulta" class="container">
         <link rel="icon" href="Imagenes/logo sena.png" >
 
+        
+        
         <% if (estado1 == Estados.FORMULARIO) {%> 
-        <nav>
-            <div class="table-responsive">
+      
+        
+        <div class="row d-flex my-5">
+            <div class="table-responsive d-flex justify-content-center">
             <div id="consul" class="col-lg-4">
-                <h1>Consultas</h1>
+                <center>  <h1  clas="text-center ">Consultas</h1></center>
 
                 <form name="form1" class="form-box" method="post" action="consultarUsuario.jsp">
                    
                     <input name="Ndocumento" type="text" placeholder="Documento" class="form-control">
                     <br>
-                    <input id="consultar" class="btn btn-primary" value="Consultar" type="submit" >
-                    <a href="menuAdministrador.jsp" class="btn btn-success" type="button" >Volver</a>
-
+                    <div class="d-flex justify-content-center">
+                        
+                 
+                            <input id="consultar" class="btn btn-primary" value="Consultar" type="submit" >
+                           <a href="menuAdministrador.jsp" class="btn btn-success mx-3" type="button" >Volver</a>
+                     </div>
                 </form>
                 </div>
             </div>
-        </nav>
+            </div>
 
         <%} else if (estado1 == Estados.RESPUESTA) {%>
         <nav>
             <div class="container">
                 <br>
-                <h1>Usuario</h1>
+                <center><h1>Usuario</h1></center>
                 <div class="table-responsive">
                     <a href="consultarUsuario.jsp" style="" class="btn btn-success" type="button" >Volver</a>
                     <br>
@@ -120,6 +129,7 @@
                                 <th class="text-center"> Correo</th>
                                 <th class="text-center"> Contrasenia</th>
                                 <th class="text-center"> Tipo De Documento</th>
+                                <th class="text-center"> Acciones</th>
                               
 
 
@@ -133,11 +143,14 @@
                         <td class="text-center" ><%=contraseña%></td>
                         <td class="text-center" ><%=tipoDoc%></td>
                         <td class="text-center" > 
-                            <a  style="color: white" href="actualizarUsuario.jsp?cod=<%=documento%>"  name="btnconsultar" class="btn btn-info" type="button" >Actualizar</a> 
+                            
+                            <div>
+                               <a  style="color: white" href="actualizarUsuario.jsp?cod=<%=documento%>"  name="btnconsultar" class="btn btn-info" type="button" >Actualizar</a> 
 
-                            <br>
-
-                            <a style="color: white" href="eliminarUsuario.jsp?cod=<%=documento%>" name="btneliminar" class="btn btn-danger" type="button"  value="Consultar">Eliminar</a>
+                          
+                            <a style="color: white" href="eliminarUsuario.jsp?cod=<%=documento%>" name="btneliminar" class="btn btn-danger" type="button"  value="Consultar">Eliminar</a>  
+                            </div>
+                           
 
                         </td>
 
@@ -156,5 +169,7 @@
     <center><p> <a class="enlace" href="consultarUsuario.jsp"> Retornar</a></p></center>
 
     <% }%>
+    
+    </div>
 </body>
 </html>
